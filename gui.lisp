@@ -26,6 +26,29 @@
 	   (co-put-on (make-instance 'check-button :master connector :text "Надет на кабель"))
 	   (co-inserted (make-instance 'check-button :master connector :text "Вставлен в кримпер"))
 
+	   ;;; Action buttons
+	   (prepare-cable (make-instance 'button :text "Подготовить кабель"))
+
+	   (select-type (make-instance 'button :text "Выбрать тип"))
+	   (measure-cable (make-instance 'button :text ""))
+	   (cut-cable (make-instance 'button :text ""))
+	   (strip-cable (make-instance 'button :text ""))
+
+	   (insert-cable (make-instance 'button :text ""))
+	   (clamp-crimper (make-instance 'button :text ""))
+	   (rotate-crimper (make-instance 'button :text ""))
+	   (unclamp-crimper (make-instance 'button :text ""))
+	   (remove-cable (make-instance 'button :text ""))
+
+	   (install-connector (make-instance 'button :text ""))
+	   (put-connector-on (make-instance 'button :text ""))
+	   (crimp-cable (make-instance 'button :text ""))
+
+	   (insert-connector (make-instance 'button :text ""))
+	   (clamp-crimper-connector (make-instance 'button :text ""))
+	   (unclamp-crimper-connector (make-instance 'button :text ""))
+	   (remove-connector (make-instance 'button :text ""))
+
 	   (quit (make-instance 'button :text "Quit"
 				:command (lambda ()
 					   (setf *exit-mainloop* t)))))
