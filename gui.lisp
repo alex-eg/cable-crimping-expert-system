@@ -1,5 +1,12 @@
 (in-package :gui)
 
+(defvar *system* 
+  (list (cons 'сисадмин (main:make-сисадмин))
+	(cons 'кабель (main:make-кабель))
+	(cons 'коннектор (main:make-коннектор))
+	(cons 'патчкорд (main:make-патчкорд))
+	(cons 'кримпер (main:make-кримпер))))
+
 (defun main-window ()
   (with-ltk ()
     (let* ((patсhcord (make-instance 'labelframe :text "Патчкорд" :width 200 :height 200))
@@ -27,29 +34,30 @@
 	   (co-inserted (make-instance 'check-button :master connector :text "Вставлен в кримпер"))
 
 	   ;;; Action buttons
-	   (prepare-cable (make-instance 'button :text "Подготовить кабель"))
+	   (buttons (make-instance 'frame))
+	   (prepare-cable (make-instance 'button :text "Подготовить кабель" :master buttons))
 
-	   (select-type (make-instance 'button :text "Выбрать тип"))
-	   (measure-cable (make-instance 'button :text ""))
-	   (cut-cable (make-instance 'button :text ""))
-	   (strip-cable (make-instance 'button :text ""))
+	   (select-type (make-instance 'button :text "Выбрать тип" :master buttons))
+	   (measure-cable (make-instance 'button :text "Отмерить кабель" :master buttons))
+	   (cut-cable (make-instance 'button :text "Отрезать кабель" :master buttons))
+	   (strip-cable (make-instance 'button :text "Зачистить кабель" :master buttons))
 
-	   (insert-cable (make-instance 'button :text ""))
-	   (clamp-crimper (make-instance 'button :text ""))
-	   (rotate-crimper (make-instance 'button :text ""))
-	   (unclamp-crimper (make-instance 'button :text ""))
-	   (remove-cable (make-instance 'button :text ""))
+	   (insert-cable (make-instance 'button :text "Вставить кабель" :master buttons))
+	   (clamp-crimper (make-instance 'button :text "Зажать кабель" :master buttons))
+	   (rotate-crimper (make-instance 'button :text "Повернуть кримпер" :master buttons))
+	   (unclamp-crimper (make-instance 'button :text "Разжать кабель" :master buttons))
+	   (remove-cable (make-instance 'button :text "Вынуть кабель" :master buttons))
 
-	   (install-connector (make-instance 'button :text ""))
-	   (put-connector-on (make-instance 'button :text ""))
-	   (crimp-cable (make-instance 'button :text ""))
+	   (install-connector (make-instance 'button :text "Установить коннектор" :master buttons))
+	   (put-connector-on (make-instance 'button :text "Надеть коннектор" :master buttons))
+	   (crimp-cable (make-instance 'button :text "Обжать кабель" :master buttons))
 
-	   (insert-connector (make-instance 'button :text ""))
-	   (clamp-crimper-connector (make-instance 'button :text ""))
-	   (unclamp-crimper-connector (make-instance 'button :text ""))
-	   (remove-connector (make-instance 'button :text ""))
+	   (insert-connector (make-instance 'button :text "Вставить коннектор в кримпер" :master buttons))
+	   (clamp-crimper-connector (make-instance 'button :text "Сжать кримпер" :master buttons))
+	   (unclamp-crimper-connector (make-instance 'button :text "Разжать кримпер" :master buttons))
+	   (remove-connector (make-instance 'button :text "Вынуть коннектор" :master buttons))
 
-	   (quit (make-instance 'button :text "Quit"
+	   (quit (make-instance 'button :text "Выход"
 				:command (lambda ()
 					   (setf *exit-mainloop* t)))))
       (grid patсhcord 0 0 :rowspan 4 :columnspan 4 :sticky "nws")
@@ -78,5 +86,25 @@
       (grid co-put-on 1 0 :sticky "nw")
       (grid co-inserted 2 0 :sticky "nw")
 
-      (grid quit 8 7))))
+      (grid buttons 0 8)
+      (grid prepare-cable 0 0 :sticky "nwe")
+      (grid select-type 2 0 :sticky "nwe")
+      (grid measure-cable 3 0 :sticky "nwe")
+      (grid cut-cable 4 0 :sticky "nwe")
+      (grid strip-cable 5 0 :sticky "nwe")
+      (grid insert-cable 6 0 :sticky "nwe")
+      (grid clamp-crimper 7 0 :sticky "nwe")
+      (grid rotate-crimper 8 0 :sticky "nwe")
+      (grid unclamp-crimper 9 0 :sticky "nwe")
+      (grid remove-cable 10 0 :sticky "nwe")
+      (grid install-connector 11 0 :sticky "nwe")
+      (grid put-connector-on 12 0 :sticky "nwe")
+      (grid crimp-cable 13 0 :sticky "nwe")
+      (grid insert-connector 14 0 :sticky "nwe")
+      (grid clamp-crimper-connector 15 0 :sticky "nwe")
+      (grid unclamp-crimper-connector 16 0 :sticky "nwe")
+      (grid remove-connector 17 0 :sticky "nwe")
+
+      (grid quit 8 0 :columnspan 8 :sticky "we"))))
+
 
